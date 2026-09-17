@@ -8,7 +8,8 @@
             {
                 new PositivePower(),
                 new DoubleOrTriple(),
-                new RootOrSquare()
+                new RootOrSquare(),
+                new CirclePerimeter()
             };
 
             bool salir = false;
