@@ -1,86 +1,66 @@
-﻿EjercicioBase ej2 = new DoubleOrTriple();
-ej2.Ejecutar();
-
-//Clase base abstracta
-public abstract class EjercicioBase
+﻿namespace BasicConcepts_Optativa
 {
-    public string Nombre {get; protected set;}
-    public abstract void Ejecutar();
-}
-
-//Ejercicio 1 Positive Power
-public class PositivePower : EjercicioBase
-{
-    private double _numero;
-    public PositivePower()
+    class Program
     {
-        Nombre = "Positive power";
-    }
+        static void Main(string[] args)
+        {
+            List<EjercicioBase> ejercicios = new List<EjercicioBase>
+            {
+                new PositivePower(),
+                new DoubleOrTriple()
+            };
 
-    public override void Ejecutar()
-    {
-        Console.Write("Ingrese un numero: ");
-        //Validacion de entrada
-        if (!double.TryParse(Console.ReadLine(), out _numero))
-        {
-            Console.WriteLine("Entrada no válida. Debe ingresar un numero.");
-            return;
-        }
-        //Logica del ejercicio
-        if (_numero > 0)
-        {
-            Console.WriteLine($"Resultado: {_numero * _numero}");
-        }
-        else if (_numero < 0)
-        {
-            Console.WriteLine("Resultado: Número negativo.");
-        }
-        else
-        {
-            Console.WriteLine("Resultado: 0");
-        }
-    }
+            bool salir = false;
 
-}
+            do
+            {
+                Console.WriteLine("----- Menú de ejercicios -----");
 
-//Ejercicio 2 Double or Triple
-public class DoubleOrTriple : EjercicioBase
-{
-    private double _primerNumero;
-    private double _segundoNumero;
+                for (int i = 0; i < ejercicios.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {ejercicios[i].Nombre}");
+                }
 
-    public DoubleOrTriple()
-    {
-        Nombre = "Double or Triple";
-    }
+                Console.WriteLine("0. Salir");
+                Console.WriteLine("--------------");
+                Console.Write("Seleccione una opción: ");
 
-    public override void Ejecutar()
-    {
-        //Solicitar y validar el primer numero
-        Console.Write("Ingrese el primer numero: ");
-        if (!double.TryParse(Console.ReadLine(), out _primerNumero))
-        {
-            Console.WriteLine("Entrada no válida para el primer número.");
-            return;
+                string entrada = Console.ReadLine() ?? "";
+
+                if (int.TryParse(entrada, out int opcion))
+                {
+                    if (opcion == 0)
+                    {
+                        salir = true;
+                        Console.WriteLine("\n¡Hasta luego!");
+                    }
+                    else if (opcion > 0 && opcion <= ejercicios.Count)
+                    {
+                        Console.WriteLine($"--- {ejercicios[opcion - 1].Nombre} ---\n");
+
+                        ejercicios[opcion - 1].Ejecutar();
+
+                        Console.WriteLine("\nPresione cualquier tecla para regresar al menú...");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        MostrarMensajeError("Opción fuera de rango. Ingrese un número válido.");
+                    }
+                }
+                else
+                {
+                    MostrarMensajeError("Por favor, ingrese un número entero válido.");
+                }
+
+            } while (!salir);
         }
 
-        //Solicitar y validar el segundo numero
-        Console.Write("Ingrese el segundo número: ");
-        if (!double.TryParse(Console.ReadLine(), out _segundoNumero))
+        public static void MostrarMensajeError(string mensaje)
         {
-            Console.WriteLine("Entrada no válida para el segundo número.");
-            return;
-        }
-        //Evaluar las condiciones
-        if (_primerNumero > _segundoNumero)
-        {
-            double resultado = _primerNumero * 2;
-            Console.WriteLine($"Resultado: {resultado}");
-        }
-        else
-        {
-            double resultado = _segundoNumero * 3;
-            Console.WriteLine($"Resultado: {resultado}");
+            Console.WriteLine($"\nError: {mensaje}");
+            Console.WriteLine("Presione cualquier tecla para continuar...");
+            Console.ReadKey();
         }
     }
 }
