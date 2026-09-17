@@ -7,7 +7,8 @@
             List<EjercicioBase> ejercicios = new List<EjercicioBase>
             {
                 new PositivePower(),
-                new DoubleOrTriple()
+                new DoubleOrTriple(),
+                new RootOrSquare()
             };
 
             bool salir = false;
