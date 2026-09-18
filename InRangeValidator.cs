@@ -10,7 +10,7 @@ namespace BasicConcepts_Optativa
 
         public override void Ejecutar()
         {
-            Console.Write("Ingrese un número: ");
+            Console.Write("Ingrese un número entre el rango de 10 a 20: ");
 
             if (!double.TryParse(Console.ReadLine() ?? "", out double numero))
             {
