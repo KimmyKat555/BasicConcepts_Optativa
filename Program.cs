@@ -15,7 +15,12 @@
                 new RemainderFinder(),
                 new SumOfEvens(),
                 new FractionDifference(),
-                new StringLength()
+                new StringLength(),
+                new AverageOfFour(),
+                new SmallestOfFive(), 
+                new VowelCounter(),
+                new FactorialFinder(),
+                new InRangeValidator()
 
             };
 
