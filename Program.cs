@@ -11,7 +11,12 @@
                 new RootOrSquare(),
                 new CirclePerimeter(),
                 new MidweekDay(),
-                new TaxCalculator()
+                new TaxCalculator(),
+                new RemainderFinder(),
+                new SumOfEvens(),
+                new FractionDifference(),
+                new StringLength()
+
             };
 
             bool salir = false;
