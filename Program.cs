@@ -9,7 +9,9 @@
                 new PositivePower(),
                 new DoubleOrTriple(),
                 new RootOrSquare(),
-                new CirclePerimeter()
+                new CirclePerimeter(),
+                new MidweekDay(),
+                new TaxCalculator()
             };
 
             bool salir = false;
